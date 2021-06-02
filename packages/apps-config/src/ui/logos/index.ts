@@ -34,6 +34,7 @@ import nodeCentrifuge from './nodes/centrifuge.png';
 import nodeChainx from './nodes/chainx.svg';
 import nodeClover from './nodes/clover.svg';
 import nodeCrab from './nodes/crab.svg';
+import nodeCreatorChain from './nodes/creatorChain.svg';
 import nodeCrust from './nodes/crust.svg';
 import nodeDarwinia from './nodes/darwinia.png';
 import nodeDataHighway from './nodes/datahighway.png';
@@ -62,7 +63,6 @@ import moonbeam from './nodes/moonbeam.png';
 import mybank from './nodes/mybank.png';
 import nodeNFTMart from './nodes/nftmart.png';
 import nodeNodle from './nodes/nodle.svg';
-import nodeCreatorChain from './nodes/creatorChain.svg';
 import nodeParami from './nodes/parami.png';
 import nodePhala from './nodes/phala.svg';
 import nodePhoenix from './nodes/phoenix.png';
@@ -292,8 +292,8 @@ export const namedLogos: Record<string, unknown> = {
   centrifuge: nodeCentrifuge,
   chainx: nodeChainx,
   clover: nodeClover,
-  creatorChain: nodeCreatorChain,
   crab: nodeCrab,
+  creatorChain: nodeCreatorChain,
   crust: nodeCrust,
   darwinia: nodeDarwinia,
   datahighway: nodeDataHighway,
