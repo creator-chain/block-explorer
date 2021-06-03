@@ -14,8 +14,18 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [14.x]
+
     steps:
     - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+    - name: Build
+      run: yarn && NODE_ENV=production yarn build:www
     - name: Configure SSH
       run: |
         mkdir -p ~/.ssh/
@@ -32,10 +42,14 @@ jobs:
         SSH_USER: ${{ secrets.DEV_SSH_USER }}
         SSH_KEY: ${{ secrets.DEV_SSH_KEY }}
         SSH_HOST: ${{ secrets.DEV_SSH_HOST }}
+    - name: Zip build & Copy to server
+      run: zip -r build.zip build && scp ./build.zip dev:/tmp
+    - name: Unzip build
+      run: ssh dev "unzip /tmp/build.zip -d $FOLDER_SERVER"
     - name: Fetch the source
       run: ssh dev "cd $FOLDER_SERVER && git fetch --all && git checkout $BRANCH_NAME && git reset --hard origin/$BRANCH_NAME"
     - name: Build image
-      run: ssh dev "docker build --file Dockerfile.cc --tag $PACKAGE_NAME $FOLDER_SERVER"
+      run: ssh dev "cd $FOLDER_SERVER && docker build --file Dockerfile.cc --tag $PACKAGE_NAME $FOLDER_SERVER"
     - name: Stops running container
       run: ssh dev "docker stop $PACKAGE_NAME || true"
     - name: Removes stopped container
