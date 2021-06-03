@@ -34,6 +34,7 @@ import nodeCentrifuge from './nodes/centrifuge.png';
 import nodeChainx from './nodes/chainx.svg';
 import nodeClover from './nodes/clover.svg';
 import nodeCrab from './nodes/crab.svg';
+import nodeCreatorChain from './nodes/creatorChain.svg';
 import nodeCrust from './nodes/crust.svg';
 import nodeDarwinia from './nodes/darwinia.png';
 import nodeDataHighway from './nodes/datahighway.png';
@@ -191,6 +192,7 @@ export const nodeLogos: Record<string, unknown> = [
   ['ChainX Node', nodeChainx],
   ['Clover Node', nodeClover],
   ['darwinia crab', nodeCrab],
+  ['Creator Chain', nodeCreatorChain],
   ['crust', nodeCrust],
   ['Crust Collator', nodeCrust],
   ['darwinia', nodeDarwinia],
@@ -291,6 +293,7 @@ export const namedLogos: Record<string, unknown> = {
   chainx: nodeChainx,
   clover: nodeClover,
   crab: nodeCrab,
+  creatorChain: nodeCreatorChain,
   crust: nodeCrust,
   darwinia: nodeDarwinia,
   datahighway: nodeDataHighway,
