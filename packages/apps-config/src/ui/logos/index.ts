@@ -33,7 +33,7 @@ import nodeCentrifuge from './nodes/centrifuge.png';
 import nodeChainx from './nodes/chainx.svg';
 import nodeClover from './nodes/clover.svg';
 import nodeCrab from './nodes/crab.svg';
-import nodeCreatorChain from './nodes/creatorChain.svg';
+import nodeCreatorChain from './nodes/creator.png';
 import nodeCrust from './nodes/crust.svg';
 import nodeDarwinia from './nodes/darwinia.png';
 import nodeDataHighway from './nodes/datahighway.png';
