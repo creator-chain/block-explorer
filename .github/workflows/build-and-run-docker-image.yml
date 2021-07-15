@@ -21,9 +21,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
     - name: Build
       run: yarn && NODE_ENV=production yarn build:www
     - name: Configure SSH
@@ -43,9 +43,9 @@ jobs:
         SSH_KEY: ${{ secrets.DEV_SSH_KEY }}
         SSH_HOST: ${{ secrets.DEV_SSH_HOST }}
     - name: Zip build & Copy to server
-      run: zip -r build.zip build && scp ./build.zip dev:/tmp
+      run: zip -rq build.zip packages/apps/build && scp ./build.zip dev:/tmp
     - name: Unzip build
-      run: ssh dev "unzip /tmp/build.zip -d $FOLDER_SERVER"
+      run: ssh dev "unzip -qo /tmp/build.zip -d $FOLDER_SERVER && rm -rf /tmp/build.zip"
     - name: Fetch the source
       run: ssh dev "cd $FOLDER_SERVER && git fetch --all && git checkout $BRANCH_NAME && git reset --hard origin/$BRANCH_NAME"
     - name: Build image
@@ -55,4 +55,4 @@ jobs:
     - name: Removes stopped container
       run: ssh dev "docker rm $PACKAGE_NAME || true"
     - name: Start the container
-      run: ssh dev "docker run -d -e WS_URL=$WS_URL -p 80:80 --name $PACKAGE_NAME $PACKAGE_NAME"
+      run: ssh dev "docker run -d -e WS_URL=$WS_URL -p 8080:80 --name $PACKAGE_NAME $PACKAGE_NAME"
